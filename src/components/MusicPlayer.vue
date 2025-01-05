@@ -12,11 +12,11 @@
           :src="currentArtist.albumCover"
         />
         <div class="ml-4">
-          <div class="text-[14px] text-white hover:underline cursor-pointer">
+          <div class="text-sm text-white hover:underline cursor-pointer">
             {{ currentTrack.name }}
           </div>
           <div
-            class="text-[11px] text-gray-500 hover:underline hover:text-white cursor-pointer"
+            class="text-xs text-gray-500 hover:underline hover:text-white cursor-pointer"
           >
             {{ currentArtist.name }}
           </div>
@@ -90,6 +90,9 @@
         </div>
       </div>
     </div>
+    <div class="flex items-center justify-end pr-10 w-1/4">
+      <Volume />
+    </div>
   </div>
 </template>
 
@@ -104,6 +107,8 @@ import SkipForward from "vue-material-design-icons/SkipForward.vue";
 
 import { useSongStore } from "../stores/useSongStore";
 import { storeToRefs } from "pinia";
+import Volume from "./Volume.vue";
+
 const useSong = useSongStore();
 const { isPlaying, audio, currentTrack, currentArtist } = storeToRefs(useSong);
 
