@@ -2,7 +2,9 @@ import { defineStore } from "pinia";
 import artist from "../data/artist.json";
 import { ref } from "vue";
 
-export const useSongStore = defineStore("song-store",() => {
+export const useSongStore = defineStore(
+  "song-store",
+  () => {
     const isPlaying = ref(false);
     const audio = ref(null);
     const currentArtist = ref(null);
