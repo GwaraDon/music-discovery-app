@@ -26,6 +26,7 @@ const props = defineProps({
   pageUrl: String,
   name: String,
 });
+
 const { iconString, pageUrl, name, iconSize } = toRefs(props);
 
 const icon = ref(null);
@@ -53,5 +54,3 @@ const isHover = () => {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

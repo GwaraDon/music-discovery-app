@@ -21,9 +21,10 @@ import { ref, toRefs } from "vue";
 import { RouterLink } from "vue-router";
 import uniqolor from "uniqolor";
 
+const props = defineProps({ category: String, image: String });
+
 const randomColor = ref("");
 randomColor.value = uniqolor.random();
 
-const props = defineProps({ category: String, image: String });
 const { category } = toRefs(props);
 </script>
