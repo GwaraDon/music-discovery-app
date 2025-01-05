@@ -1,6 +1,7 @@
 import { createMemoryHistory, createRouter } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import SearchView from "../views/SearchView.vue";
+import LibraryView from "../views/LibraryView.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/search",
     name: "search",
     component: SearchView,
+  },
+  {
+    path: "/library",
+    name: "library",
+    component: LibraryView,
   },
 ];
 
