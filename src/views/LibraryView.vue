@@ -79,6 +79,6 @@ const playFunc = () =>{
         useSong.playOrPauseThisSong(currentArtist.value, currentTrack.value)
         return
     }
-    useSong.playFromFirst
+    useSong.playFromFirst()
 }
 </script>

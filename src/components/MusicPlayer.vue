@@ -59,10 +59,7 @@
         </div>
 
         <div class="flex items-center h-6">
-          <div
-            v-if="isTrackTimeCurrent"
-            class="text-white text-xs pr-2 pt-3"
-          >
+          <div v-if="isTrackTimeCurrent" class="text-white text-xs pr-2 pt-3">
             {{ isTrackTimeCurrent }}
           </div>
           <div
@@ -87,10 +84,7 @@
               class="absolute h-1 z-[-0] mt-[6px] inset-y-0 left-0 w-full bg-gray-500 rounded-full"
             />
           </div>
-          <div
-            v-if="isTrackTimeTotal"
-            class="text-white text-xs pl-2 pt-3"
-          >
+          <div v-if="isTrackTimeTotal" class="text-white text-xs pl-2 pt-3">
             {{ isTrackTimeTotal }}
           </div>
         </div>
@@ -157,32 +151,38 @@ onMounted(() => {
 });
 
 const timeupdate = () => {
-  audio.value.addEventListener("timeupdate", function () {
-    var minutes = Math.floor(audio.value.currentTime / 60);
-    var seconds = Math.floor(audio.value.currentTime - minutes * 60);
-    isTrackTimeCurrent.value =
-      minutes + ":" + seconds.toString().padStart(2, "0");
-    const value = (100 / audio.value.duration) * audio.value.currentTime;
-    range.value = value;
-    seeker.value.value = value;
-  });
+  if (audio.value instanceof HTMLAudioElement) {
+    audio.value.addEventListener("timeupdate", function () {
+      var minutes = Math.floor(audio.value.currentTime / 60);
+      var seconds = Math.floor(audio.value.currentTime - minutes * 60);
+      isTrackTimeCurrent.value =
+        minutes + ":" + seconds.toString().padStart(2, "0");
+      const value = (100 / audio.value.duration) * audio.value.currentTime;
+      range.value = value;
+      seeker.value.value = value ?? 0;
+    });
+  }
 };
 
 const loadmetadata = () => {
-  audio.value.addEventListener("loadedmetadata", function () {
-    const duration = audio.value.duration;
-    const minutes = Math.floor(duration / 60);
-    const seconds = Math.floor(duration % 60);
-    isTrackTimeTotal.value =
-      minutes + ":" + seconds.toString().padStart(2, "0");
-  });
+  if (audio.value instanceof HTMLAudioElement) {
+    audio.value.addEventListener("loadedmetadata", function () {
+      const duration = audio.value.duration;
+      const minutes = Math.floor(duration / 60);
+      const seconds = Math.floor(duration % 60);
+      isTrackTimeTotal.value =
+        minutes + ":" + seconds.toString().padStart(2, "0");
+    });
+  }
 };
 
 watch(
   () => audio.value,
   () => {
-    timeupdate();
-    loadmetadata();
+    if (audio.value instanceof HTMLAudioElement) {
+      timeupdate();
+      loadmetadata();
+    }
   }
 );
 

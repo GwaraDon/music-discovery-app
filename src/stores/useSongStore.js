@@ -2,30 +2,9 @@ import { defineStore } from "pinia";
 import artist from "../data/artist.json";
 import { ref } from "vue";
 
-/**
- * Defines a song store.
- *
- * @typedef {Object} SongStore
- * @property {Ref<boolean>} isPlaying - A reactive reference to the playing state of the song.
- * @property {Ref<Audio>} audio - A reactive reference to the audio element.
- * @property {Ref<string>} currentArtist - A reactive reference to the current artist.
- * @property {Ref<string>} currentTrack - A reactive reference to the current track.
- * @property {Function} loadSong - Loads a song with the specified artist and track.
- * @property {Function} playOrPauseSong - Plays or pauses the current song.
- * @property {Function} playOrPauseThisSong - Plays or pauses the specified song.
- * @property {Function} prevSong - Loads the previous song in the artist's track list.
- * @property {Function} nextSong - Loads the next song in the artist's track list.
- * @property {Function} playFromFirst - Resets the state and loads the first song in the artist's track list.
- * @property {Function} resetState - Resets the state of the song store.
- */
-
-/**
- * Creates a song store.
- *
- * @function useSongStore
- * @returns {SongStore} The created song store.
- */
-export const useSongStore = defineStore("song-store",() => {
+export const useSongStore = defineStore(
+  "song-store",
+  () => {
     const isPlaying = ref(false);
     const audio = ref(null);
     const currentArtist = ref(null);
